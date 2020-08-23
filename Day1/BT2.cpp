@@ -15,9 +15,13 @@ int main(){
         B[i] = 1;
         for(int j = 0 ; j < i ;j++){
             if(A[j] < A[i]){
-                B[i] = max(B[i],B[j]+1);
+                if(B[i] < B[j]+1){
+                    B[i] = B[j]+1;
+                }
             }
-            result = max(result, B[i]);
+            if(result < B[i]){
+                result = B[i];
+            }
         }
     }
     cout<<result;

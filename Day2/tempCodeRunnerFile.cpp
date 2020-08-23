@@ -1,0 +1,1 @@
+freopen("BT2.txt", "r", stdin);
