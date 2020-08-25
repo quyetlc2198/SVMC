@@ -59,5 +59,12 @@ int main(){
     for(int i = 1 ; i <=n;i++){
         t+=A[m][i];
     }
+    for(int i =0; i <= m; i++){
+        for(int j =0; j <=n; j++){
+            cout<<A[i][j]<<" ";
+        }
+        cout<<"\n";
+    }
     cout<<t;
+    
 }

@@ -11,7 +11,7 @@ int min(int a, int b){
 
 int main(){
     int m,n;
-	freopen("BT12.txt","r",stdin);
+	freopen("BT1.txt","r",stdin);
     cin>>m>>n;
     int A[100][100];
 	int B[100][100];
