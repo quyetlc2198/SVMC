@@ -1,44 +1,100 @@
-#include<iostream>
-#include<algorithm>
+#include <iostream>
 using namespace std;
-int A[10000];
 
-void sort(int A[], int n){
-    for(int i =0; i < n; i++){
-        for(int j = i+1; j < n;j++){
-            if(A[i] >= A[j]){
-                int t = A[i];
-                A[i] = A[j];
-                A[j] = t;
-            }
-        }
+int calculate2(int a[],int st,int en)
+{
+    int b=a[st];
+    int c=a[en];
+    int h=b>c?c:b;
+    int result=0;
+    for(int i=en-1; i>st; i--)
+    {
+        result+=h-a[i];
+
     }
+    return result;
 }
 
-int main(){
-    freopen("BT1.txt","r", stdin);
-    int N;
-    cin>>N;
-    int S[20];
-    int a = 0;
-    while (a < N)
+
+int calculate1(int a[],int st,int en)
+{
+    int result=0;
+    int first=a[en];
+    int start=en;
+    for(int i=en-1; i>=st; i--)
     {
-        int n;
-        cin>>n;
-        for(int i =0; i < n; i++){
-            cin>>A[i];
+
+        if(first<a[i])
+        {
+
+            result+=calculate2(a,i,start);
+            first=a[i];
+            start=i;
+
         }
-        sort(A,n);
-        int t = 0;
-        int b = A[n-2];
-        for(int i =0; i<n-1;i++){
-            t+= b - A[i];
+
+    }
+
+    return result;
+
+}
+
+int Calculate(int a[],int st, int en)
+{
+    int b=a[st];
+    int c=a[en];
+    int h=b>c?c:b;
+
+    int result=0;
+    for(int i=st+1; i<en; i++)
+    {
+        result+=h-a[i];
+    }
+    return result;
+}
+int main()
+{
+    bool ok=true;
+    int T;
+    freopen("BT1.txt","r",stdin);
+    cin>>T;
+
+    while(T--)
+    {
+        ok=true;
+        int N;
+        cin>>N;
+        int blocks[10000];
+        for(int i=0; i<N; i++)
+        {
+            cin>>blocks[i];
         }
-        S[a] = t;
-        a++;
+        int water=0;
+        int start=0;
+        int ends=0;
+        int highest=0;
+        int first=blocks[start];
+        for(int i=1; i<N; i++)
+        {
+            if(first<=blocks[i])
+            {
+                ends=i;
+
+                highest=blocks[i]>first?first:blocks[i];
+                water+=Calculate(blocks,start,ends);
+                start=i;
+                first=blocks[i];
+                continue;
+            }
+
+        }
+        if(start!=N-1)
+        {
+            ends=N-1;
+            water+=calculate1(blocks,start,ends);
+        }
+
+        cout<<water<<endl;
     }
-    for(int i =0; i < N; i++){
-        cout<<S[i]<<"\n";
-    }
-    
+    return 0;
 }
