@@ -2,7 +2,7 @@
 using namespace std;
 
 int main(){
-    freopen("BT1.txt","r",stdin);
+    // freopen("BT1.txt","r",stdin);
     int N;
     cin>>N;
     

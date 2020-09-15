@@ -19,7 +19,7 @@ int check(int a, int b, int g){
     }
     if(min != 1001){
         g++;
-        cout<<A[x][y]<<" ";
+        // cout<<A[x][y]<<" ";
         check(x,y,g);
     }else{
         return g;
